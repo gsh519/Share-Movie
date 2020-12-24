@@ -6,8 +6,6 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 import { ShowItem } from './ShowItem';
-import Backdrop from '@material-ui/core/Backdrop';
-
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -42,10 +40,6 @@ export const MovieList = (props) => {
     setIdx(index)
   }
 
-  // const handleClose = () => {
-  //   setShowFlag(false);
-  // };
-
   return (
     <>
       <ul className={classes.display}>
@@ -69,15 +63,11 @@ export const MovieList = (props) => {
                   </CardContent>
                 </CardActionArea>
               </Card>
-              
             </>
           )
         })}
       </ul>
       {showFlag ? <ShowItem index={idx} data={movieDatas} toggleFlag={toggleFlag} /> : null }
-      {/* <Backdrop className={classes.backdrop} open={showFlag} onClick={handleClose}>
-        <ShowItem index={idx} data={movieDatas} />
-      </Backdrop> */}
     </>
   )
 };

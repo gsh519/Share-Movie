@@ -44,7 +44,7 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'space-evenly'
   },
   point: {
-    border: '1px solid #032541',
+    border: '2px solid #ffa251',
     margin: 10,
     borderRadius: '50%',
     backgroundColor: '#032541',
@@ -117,7 +117,7 @@ export const ShowItem = (props) => {
               </div>
               <div>
                 <Typography color="textSecondary" className={classes.point}>
-                  {data[index].popularity}
+                  {Math.floor(data[index].popularity)}
                 </Typography>
                 <p className={classes.flexCenter}>人気度</p>
               </div>

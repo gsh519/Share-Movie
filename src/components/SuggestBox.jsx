@@ -8,7 +8,35 @@ const useStyles = makeStyles({
   inputRoot: {
     backgroundColor: '#fff',
     width: 450,
+    marginRight: 20,
   },
+  box: {
+    width: 800,
+    minHeight: 420,
+    position: 'fixed',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    zIndex: '500',
+  },
+  flexbox: {
+    display: 'flex',
+    alignItems: 'center',
+    position: 'absolute',
+    right: '30%'
+  },
+  btn: {
+    width: 50,
+    height: 30,
+    border: '1px solid #ffa251',
+    backgroundColor: '#032541',
+    borderRadius: '3px',
+    color: '#ffa251',
+    '&:hover': {
+      backgroundColor: '#FFA251',
+      color: '#032541'
+    }
+  }
 })
 
 
@@ -23,6 +51,7 @@ export const SuggestBox = (props) => {
   const [toggleClick, setToggleClick] = useState(false)
 
   const onClickSearch = () => {
+    if (search === '') return
     setToggleClick(!toggleClick);
   }
 
@@ -46,19 +75,21 @@ export const SuggestBox = (props) => {
 
   return (
     <>
-      <Autocomplete
-        classes={{
-          inputRoot: classes.inputRoot,
-        }}
-        id="free-solo-demo"
-        freeSolo
-        options={suggest ? suggest.map((option) => option.title) : null}
-        renderInput={(params) => (
-          <TextField {...params} variant="outlined" value={search} onChange={changeSearch} />
-        )}
-      />
-      <button onClick={onClickSearch}>検索</button>
-      {toggleClick ? <SuggestShowItem suggest={suggest} /> : null}
+      <div className={classes.flexbox}>
+        <Autocomplete
+          classes={{
+            inputRoot: classes.inputRoot,
+          }}
+          id="free-solo-demo"
+          freeSolo
+          options={suggest ? suggest.map((option, index) => option.title) : null}
+          renderInput={(params) => (
+            <TextField {...params} variant="outlined" value={search} onChange={changeSearch} placeholder='映画を検索する' />
+          )}
+        />
+        <button onClick={onClickSearch} className={classes.btn}>検索</button>
+      </div>
+      {toggleClick ? <div className={classes.box}><SuggestShowItem suggest={suggest} onClickSearch={onClickSearch} /></div> : null}
     </>
   );
 }

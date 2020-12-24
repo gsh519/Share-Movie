@@ -50,7 +50,7 @@ const App = () => {
     setUpcoming(true)
   }
 
-  const popularUrl = 'http://api.themoviedb.org/3/movie/popular?page=1&api_key=aa30d58a9845521cb6d81fd5bacc2bae';
+  const popularUrl = 'http://api.themoviedb.org/3/movie/popular?api_key=aa30d58a9845521cb6d81fd5bacc2bae';
   const nowplayingUrl = 'http://api.themoviedb.org/3/movie/now_playing?page=1&api_key=aa30d58a9845521cb6d81fd5bacc2bae'
   const topratedUrl = 'http://api.themoviedb.org/3/movie/top_rated?page=1&api_key=aa30d58a9845521cb6d81fd5bacc2bae'
   const upcomingUrl = 'http://api.themoviedb.org/3/movie/upcoming?page=1&api_key=aa30d58a9845521cb6d81fd5bacc2bae'

@@ -4,18 +4,20 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
+import ClearIcon from '@material-ui/icons/Clear';
 
 const useStyles = makeStyles((theme) => ({
+  suggestItems: {
+    overflow: 'scroll',
+    height: 420,
+    padding: 0
+  },
   root: {
-    display: 'flex',
     width: 800,
     minHeight: 420,
+    display: 'flex',
     margin: '0px auto',
-    position: 'fixed',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-    zIndex: '500',
+    marginBottom: 20,
   },
   details: {
     display: 'flex',
@@ -63,6 +65,12 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     justifyContent: 'center',
     fontSize: '14px',
+  },
+  clear: {
+    position: 'absolute',
+    right: -25,
+    top: -15,
+    fontSize: 30,
   }
 }));
 
@@ -70,57 +78,58 @@ const useStyles = makeStyles((theme) => ({
 export const SuggestShowItem = (props) => {
 
   const classes = useStyles();
-  const { suggest } = props;
+  const { suggest, onClickSearch } = props;
 
   return (
-    <>
-      {suggest.map((data) => {
-        return (
-          <Card className={classes.root}>
-            <CardMedia
-              className={classes.cover}
-              image={'https://image.tmdb.org/t/p/w300_and_h450_bestv2/' + data.poster_path}
-              title="Live from space album cover"
-            />
-            <div className={classes.details}>
-              <CardContent className={classes.content}>
-                <Typography component="h5" variant="h5" style={{fontSize: '33px', margin: '30px 0 13px 0',}}>
-                  {data.title}
-                </Typography>
-                <Typography variant="subtitle1" color="textSecondary" style={{marginBottom: 15}}>
-                  公開日: {data.release_date}
-                </Typography>
-                <Typography variant="subtitle1" color="textSecondary">
-                  概要
-                </Typography>
-                <Typography variant="subtitle1" color="textSecondary" style={{fontSize: 17, marginBottom: 20}}>
-                  {data.overview}
-                </Typography>
-                <div className={classes.flex}>
-                  <div>
-                    <Typography color="textSecondary" className={classes.point}>
-                      {data.vote_count}
-                    </Typography>
-                    <p className={classes.flexCenter}>人気投票数</p>
+      <ul className={classes.suggestItems}>
+        {suggest.map((data) => {
+          return (
+            <Card className={classes.root}>
+              <CardMedia
+                className={classes.cover}
+                image={'https://image.tmdb.org/t/p/w300_and_h450_bestv2/' + data.poster_path}
+                title="Live from space album cover"
+              />
+              <ClearIcon className={classes.clear} onClick={onClickSearch} />
+              <div className={classes.details}>
+                <CardContent className={classes.content}>
+                  <Typography component="h5" variant="h5" style={{fontSize: '33px', margin: '30px 0 13px 0',}}>
+                    {data.title}
+                  </Typography>
+                  <Typography variant="subtitle1" color="textSecondary" style={{marginBottom: 15}}>
+                    公開日: {data.release_date}
+                  </Typography>
+                  <Typography variant="subtitle1" color="textSecondary">
+                    概要
+                  </Typography>
+                  <Typography variant="subtitle1" color="textSecondary" style={{fontSize: 17, marginBottom: 20}}>
+                    {data.overview}
+                  </Typography>
+                  <div className={classes.flex}>
+                    <div>
+                      <Typography color="textSecondary" className={classes.point}>
+                        {data.vote_count}
+                      </Typography>
+                      <p className={classes.flexCenter}>人気投票数</p>
+                    </div>
+                    <div>
+                      <Typography color="textSecondary" className={classes.point}>
+                        {data.vote_average}
+                      </Typography>
+                      <p className={classes.flexCenter}>評価</p>
+                    </div>
+                    <div>
+                      <Typography color="textSecondary" className={classes.point}>
+                        {Math.floor(data.popularity)}
+                      </Typography>
+                      <p className={classes.flexCenter}>人気度</p>
+                    </div>
                   </div>
-                  <div>
-                    <Typography color="textSecondary" className={classes.point}>
-                      {data.vote_average}
-                    </Typography>
-                    <p className={classes.flexCenter}>評価</p>
-                  </div>
-                  <div>
-                    <Typography color="textSecondary" className={classes.point}>
-                      {data.popularity}
-                    </Typography>
-                    <p className={classes.flexCenter}>人気度</p>
-                  </div>
-                </div>
-              </CardContent>
-            </div>
-          </Card>
-        )
-      })}
-    </>
+                </CardContent>
+              </div>
+            </Card>
+          )
+        })}
+      </ul>
   )
 }
