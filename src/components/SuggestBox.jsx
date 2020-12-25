@@ -35,6 +35,9 @@ const useStyles = makeStyles({
     '&:hover': {
       backgroundColor: '#FFA251',
       color: '#032541'
+    },
+    '&:focus': {
+      outline: 'none',
     }
   }
 })
