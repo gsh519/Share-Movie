@@ -3,6 +3,7 @@ import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import { makeStyles } from '@material-ui/core';
 import { SuggestShowItem } from './SuggestShowItem';
+import SearchIcon from '@material-ui/icons/Search';
 
 const useStyles = makeStyles({
   inputRoot: {
@@ -11,13 +12,14 @@ const useStyles = makeStyles({
     marginRight: 20,
   },
   box: {
-    width: 800,
-    minHeight: 420,
+    width: '100%',
+    height: '100vh',
     position: 'fixed',
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
     zIndex: '500',
+    backgroundColor: '#032541',
   },
   flexbox: {
     display: 'flex',
@@ -26,7 +28,10 @@ const useStyles = makeStyles({
     right: '30%'
   },
   btn: {
-    width: 50,
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: 60,
     height: 30,
     border: '1px solid #ffa251',
     backgroundColor: '#032541',
@@ -60,12 +65,7 @@ export const SuggestBox = (props) => {
 
   useEffect(() => {
     if (search === '') {
-      let url = 'http://api.themoviedb.org/3/movie/popular?page=1&api_key=aa30d58a9845521cb6d81fd5bacc2bae';
-      fetch(url).then((res) => res.json()).then((datas) => {
-        setSuggest(datas.results)
-      }).catch(() => {
-        console.log('error')
-      })
+      return;
     } else {
       let url = `https://api.themoviedb.org/3/search/movie?query=${search}&api_key=aa30d58a9845521cb6d81fd5bacc2bae`;
       fetch(url).then((res) => res.json()).then((datas) => {
@@ -85,12 +85,12 @@ export const SuggestBox = (props) => {
           }}
           id="free-solo-demo"
           freeSolo
-          options={suggest ? suggest.map((option, index) => option.title) : null}
+          options={suggest ? suggest.map((option) => option.title) : null}
           renderInput={(params) => (
             <TextField {...params} variant="outlined" value={search} onChange={changeSearch} placeholder='映画を検索する' />
           )}
         />
-        <button onClick={onClickSearch} className={classes.btn}>検索</button>
+        <button onClick={onClickSearch} className={classes.btn}>検索<SearchIcon style={{fontSize: 18}} /></button>
       </div>
       {toggleClick ? <div className={classes.box}><SuggestShowItem suggest={suggest} onClickSearch={onClickSearch} /></div> : null}
     </>

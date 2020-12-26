@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import { fade,makeStyles } from '@material-ui/core/styles';
+import React from 'react';
+import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
@@ -21,9 +21,6 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     justifyContent: 'space-between',
   },
-  title: {
-    marginLeft: 65,
-  },
 }));
 
 export const Header = (props) => {
@@ -36,7 +33,7 @@ export const Header = (props) => {
     <div className={classes.root}>
       <AppBar position="static">
         <Toolbar className={classes.bar}>
-          <Typography variant="h5" className={classes.title}>
+          <Typography variant="h5">
             Share Movie
           </Typography>
           <SuggestBox search={search} changeSearch={changeSearch} />

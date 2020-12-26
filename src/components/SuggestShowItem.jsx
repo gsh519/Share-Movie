@@ -9,8 +9,13 @@ import ClearIcon from '@material-ui/icons/Clear';
 const useStyles = makeStyles((theme) => ({
   suggestItems: {
     overflow: 'scroll',
-    height: 420,
-    padding: 0
+    height: 600,
+    padding: 0,
+    marginTop: 30,
+  },
+  title: {
+    textAlign: 'center',
+    color: '#FFA251',
   },
   root: {
     width: 800,
@@ -68,9 +73,10 @@ const useStyles = makeStyles((theme) => ({
   },
   clear: {
     position: 'absolute',
-    right: -25,
-    top: -15,
+    right: 208,
+    top: 60,
     fontSize: 30,
+    color: '#fff',
   }
 }));
 
@@ -81,6 +87,8 @@ export const SuggestShowItem = (props) => {
   const { suggest, onClickSearch } = props;
 
   return (
+    <>
+      <h1 className={classes.title}>検索結果一覧</h1>
       <ul className={classes.suggestItems}>
         {suggest.map((data) => {
           return (
@@ -110,13 +118,13 @@ export const SuggestShowItem = (props) => {
                       <Typography color="textSecondary" className={classes.point}>
                         {data.vote_count}
                       </Typography>
-                      <p className={classes.flexCenter}>人気投票数</p>
+                      <p className={classes.flexCenter}>投票数</p>
                     </div>
                     <div>
                       <Typography color="textSecondary" className={classes.point}>
                         {data.vote_average}
                       </Typography>
-                      <p className={classes.flexCenter}>評価</p>
+                      <p className={classes.flexCenter}>投票平均</p>
                     </div>
                     <div>
                       <Typography color="textSecondary" className={classes.point}>
@@ -131,5 +139,6 @@ export const SuggestShowItem = (props) => {
           )
         })}
       </ul>
+    </>
   )
 }

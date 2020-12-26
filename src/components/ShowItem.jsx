@@ -107,13 +107,13 @@ export const ShowItem = (props) => {
                 <Typography color="textSecondary" className={classes.point}>
                   {data[index].vote_count}
                 </Typography>
-                <p className={classes.flexCenter}>人気投票数</p>
+                <p className={classes.flexCenter}>投票数</p>
               </div>
               <div>
                 <Typography color="textSecondary" className={classes.point}>
                   {data[index].vote_average}
                 </Typography>
-                <p className={classes.flexCenter}>評価</p>
+                <p className={classes.flexCenter}>投票平均</p>
               </div>
               <div>
                 <Typography color="textSecondary" className={classes.point}>
